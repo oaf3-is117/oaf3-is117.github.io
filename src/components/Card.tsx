@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { SyntheticEvent, useEffect, useRef, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import "../styles/gameCard.css"
 
@@ -15,9 +15,21 @@ interface CardProps {
     undoSelected: () => void
 }
 
+interface gameInfoType {
+    name : string
+    description : string
+    background_image : string
+    esrb_rating : string
+    rating : string
+    ratings : any[]
+    genres: any[]
+    tags : any[]
+    platforms : any[]
+}
+
 const GameCard = ({ game, undoSelected }: CardProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
-    const [gameInfo, setGameInfo] = useState(null)
+    const [gameInfo, setGameInfo] = useState<gameInfoType | null>(null)
 
     useEffect(() => {
         fetch(`/data/${game.id}.json`)
@@ -30,22 +42,26 @@ const GameCard = ({ game, undoSelected }: CardProps) => {
                     background_image: game.background_image,
                     esrb_rating: game.esrb_rating,
                     rating: game.rating,
-                    ratings: game.ratings.map(rating => { return { title: rating.title, count: rating.count } }),
+                    ratings: game.ratings.map((rating : any) => { return { title: rating.title, count: rating.count } }),
                     genres: game.genres.map((genre: any) => genre.name),
                     tags: game.tags.map((tag: any) => tag.name),
-                    platforms: game.platforms.map(platform => platform.platform.name)
+                    platforms: game.platforms.map((platform : any) => platform.platform.name)
                 })
                 console.log(gameInfo)
             })
     }, [game.id])
 
-    const onClick = (e) => {
-        if (e.target.className == "game-card-container") {
-            undoSelected()
+    const onClick = (e : SyntheticEvent) => {
+        const { target } = e;
+        if (target instanceof HTMLElement) {
+            if (target.className == "game-card-container") {
+                undoSelected()
+            }
         }
     }
+    
     return (
-        <div ref={containerRef} className="game-card-container" onClick={onClick}> {/* Container with custom class */}
+        <div ref={containerRef} className="game-card-container" onClick={onClick}>
             {gameInfo &&
                 <Card style={{ width: '100%' }}>
                     <Card.Img variant="top" src={gameInfo.background_image} />

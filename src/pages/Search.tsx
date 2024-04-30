@@ -22,8 +22,7 @@ function Search() {
         setSearchResults(results);
     };
 
-	const undoSelected = (e) => {
-		console.log(e)
+	const undoSelected = () => {
 		setSelectedGame(null)
 	}
 
@@ -40,7 +39,7 @@ function Search() {
                         rating: game.rating,
                         genres: game.genres.map((genre: any) => genre.name),
                         tags: game.tags.map((tag: any) => tag.name),
-						platforms: game.platforms.map(platform => platform.platform.name)
+						platforms: game.platforms.map((platform : any) => platform.platform.name)
                     }
                 });
                 setSearchResults(game_data);
@@ -81,7 +80,7 @@ function Search() {
                                     onChange={() => setShowAllGenres(!showAllGenres)}
                                 />
                                 {games.length > 0 && (
-                                    [...new Set(games.reduce((acc, cur) => [...acc, ...cur.genres], []))].map(genre => (
+                                    [...new Set(games.reduce((acc, cur) => [...acc, ...cur.genres], []))].map((genre : any) => (
                                         <Form.Check
                                             key={genre}
                                             type="checkbox"
@@ -102,7 +101,7 @@ function Search() {
                             <Form.Group controlId="tags">
                                 <Form.Label>Tags</Form.Label>
                                 {games.length > 0 && (
-                                    [...new Set(games.reduce((acc, cur) => [...acc, ...cur.tags], []))].map(tag => (
+                                    [...new Set(games.reduce((acc, cur) => [...acc, ...cur.tags], []))].map((tag : any) => (
                                         <Form.Check
                                             key={tag}
                                             type="checkbox"

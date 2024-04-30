@@ -1,0 +1,28 @@
+:root.light {
+	--primary-bg: #f0f0f0;
+	--primary-fg: #000000;
+	--secondary-bg: #ffffff;
+	--secondary-fg: #000000;
+	--accent-color: #9747FF;
+	--border-color: unset;
+}
+
+:root.dark {
+	--primary-bg: #0a0a0a;
+	--primary-fg: #ffffff;
+	--secondary-bg: #1a1a1a;
+	--secondary-fg: #ffffff;
+	--accent-color: #9747FF;
+	--border-color: rgba(102, 102, 102, 0.33);
+}
+
+.app {
+	background-color: var(--primary-bg);
+	color: var(--primary-fg);
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	background-color: var(--primary-bg) !important;
+}

@@ -1,0 +1,7 @@
+footer {
+	background-color: var(--secondary-bg);
+}
+
+footer a {
+	color: var(--secondary-fg);
+}

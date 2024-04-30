@@ -1,0 +1,37 @@
+.game-card-container {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.game-card-container .card-img-top {
+	width: 50%;
+}
+
+.game-card-container .card {
+	height: 90%;
+	overflow: scroll;
+	margin: 1rem 1rem;
+}
+
+.card ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	width: 100%;
+  }
+  
+  .card ul li {
+	background-color: var(--primary-bg);
+	padding: 0.5rem 1rem;
+	flex: 0 0 auto;
+	border-radius: 1rem;
+  }
+
+.card-subtitle {
+	width: 80ch;
+}
